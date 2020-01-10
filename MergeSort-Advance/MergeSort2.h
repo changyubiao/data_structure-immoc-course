@@ -9,6 +9,7 @@
 #define MERGESORT_MERGESORT2_H
 
 #include "SortTestHelper.h"
+#include "InsertSort.h"
 
 template<typename T>
 void __merge(T arr[], int l, int mid, int r) {
@@ -17,7 +18,6 @@ void __merge(T arr[], int l, int mid, int r) {
      *
      *
      * */
-
 
     T aux[r-l+1];
     // copy data aux 中
@@ -67,14 +67,27 @@ void __mergeSort(T arr[], int l, int r) {
      *
      *
      * */
-    if (l >= r) {
+//    if (l >= r) {
+//        return;
+//    }
+
+    // 优化2: 对于小规模数组, 使用插入排序
+    if( r - l <= 15 ){
+        insertionSort(arr, l, r);
         return;
     }
 
     int mid = l + (r - l) / 2;
     __mergeSort(arr, l, mid);
     __mergeSort(arr, mid + 1, r);
-    __merge(arr, l, mid, r);
+
+    // 优化1: 对于arr[mid] <= arr[mid+1]的情况,不进行merge
+    // 对于近乎有序的数组非常有效,但是对于一般情况,有一定的性能损失
+    if( arr[mid] > arr[mid+1] ){
+        __merge(arr, l, mid, r);
+
+    }
+
 }
 
 
