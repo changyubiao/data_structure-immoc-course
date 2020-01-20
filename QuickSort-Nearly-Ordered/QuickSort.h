@@ -25,7 +25,8 @@ int __partition(T arr[], int left, int right) {
 
 
     int j = left;
-    // arr[left+1 ...j] <v ; arr[j+1,i) >v
+
+    // arr[left+1 ...j] <=v ;  arr[j+1,i) >v
     for (int i = left + 1; i <= right; i++) {
         //  arr[i]>v  do nothig 只要 i++ 即可
         if (arr[i] < v) {

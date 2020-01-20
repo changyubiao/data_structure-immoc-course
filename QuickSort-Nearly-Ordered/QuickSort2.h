@@ -1,5 +1,9 @@
 //
 // Created by changfx on 2020/1/19.
+/*
+ * 二路快排 方法
+ *
+ * */
 //
 
 #ifndef QUICKSORT_QUICKSORT2_H
@@ -19,8 +23,7 @@ int __partition2(T arr[], int l, int r) {
     swap(arr[l], arr[rand() % (r - l + 1) + l]);
     T v = arr[l];
 
-
-//    arr[l+1 ,i) <=v ; arr(j,r] >=v
+    //  arr[l+1 ,i) <=v ; arr(j,r] >=v
     int i = l + 1, j = r;
     while (true) {
         // 注意这里的边界, arr[i] < v, 不能是arr[i] <= v
@@ -33,8 +36,9 @@ int __partition2(T arr[], int l, int r) {
         while (j >= l + 1 && arr[j] > v)
             j--;
 
-        if (i > j)
+        if (i > j) {
             break;
+        }
 
         swap(arr[i], arr[j]);
         i++;

@@ -3,17 +3,20 @@
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "QuickSort2.h"
+#include "QuickSort3.h"
 
 
 using namespace std;
 
 
-int main() {
+int main01() {
 
     int n = 100000;
 //    int n = 10;
     int *arr1 = nullptr;
     int *arr2 = nullptr;
+    int *arr3 = nullptr;
+    int *arr4 = nullptr;
     cout << "Test for random array, size = " << n << ", random range [0, " << n << "]" << endl;
 
     arr1 = SortTestHelper::generateRandomArray(n, 0, n);
@@ -50,13 +53,49 @@ int main() {
     cout << "Test for random array, size = " << n << ", random range [0,10]" << endl;
     arr1 = SortTestHelper::generateRandomArray(n, 0, 10);
     arr2 = SortTestHelper::copyIntArray(arr1, n);
+    arr3 = SortTestHelper::copyIntArray(arr1, n);
+    arr4 = SortTestHelper::copyIntArray(arr1, n);
+
 
     SortTestHelper::testSort("Merge Sort", mergeSort, arr1, n);
     SortTestHelper::testSort("Quick Sort", quickSort, arr2, n);
-    SortTestHelper::testSort("Quick Sort2", quickSort2, arr2, n);
+    SortTestHelper::testSort("Quick Sort2", quickSort2, arr3, n);
+    SortTestHelper::testSort("Quick Sort three ways", quickSort3, arr1, n);
 
     delete[] arr1;
     delete[] arr2;
+    delete[] arr3;
+    delete[] arr4;
+
+    cout << endl;
+    return 0;
+}
+
+
+int main() {
+
+    int n = 100000;
+//    int n = 10;
+    int *arr1 = nullptr;
+    int *arr2 = nullptr;
+    int *arr3 = nullptr;
+    int *arr4 = nullptr;
+
+
+    // 测试3 测试存在包含大量相同元素的数组
+    // 使用双快速排序后, 我们的快速排序算法可以轻松的处理包含大量元素的数组
+    cout << "Test for random array, size = " << n << ", random range [0,10]" << endl;
+    arr1 = SortTestHelper::generateRandomArray(n, 0, 10);
+    arr2 = SortTestHelper::copyIntArray(arr1, n);
+
+
+    SortTestHelper::testSort("Quick Sort3", quickSort3, arr1, n);
+    SortTestHelper::testSort("Quick Sort2 two ways partition", quickSort2, arr2, n);
+
+    delete[] arr1;
+    delete[] arr2;
+    delete[] arr3;
+    delete[] arr4;
 
     cout << endl;
     return 0;
