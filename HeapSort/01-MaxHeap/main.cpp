@@ -2,9 +2,7 @@
 
 #include <algorithm>
 #include <string>
-#include <ctime>
-#include <cmath>
-#include <cassert>
+
 using namespace std;
 
 
@@ -19,11 +17,10 @@ private:
 public:
 
     // 构造函数, 构造一个空堆, 可容纳capacity个元素
-     explicit MaxHeap(int capacity) {
-
-        data = new Item[capacity];
+    explicit MaxHeap(int capacity) {
+        // 这里预留一个空间 数组小标为0 的暂时不用
+        data = new Item[capacity + 1];
         count = 0;
-
     }
 
     ~MaxHeap() {
@@ -48,12 +45,9 @@ public:
 };
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    MaxHeap<int> maxHeap = MaxHeap<int>(10);
 
-//    MaxHeap(int)<>
-    MaxHeap<int> maxheap = MaxHeap<int>(10);
-
-    cout << "size = " << maxheap.size() << endl;
+    cout << "size = " << maxHeap.size() << endl;
 
     return 0;
 }

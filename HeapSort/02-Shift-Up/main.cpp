@@ -8,14 +8,8 @@
 
 using namespace std;
 
-/*
- * 31min  第四章 第一节
- *
- * */
-
 template<typename Item>
 class MaxHeap {
-
 
 private:
     Item *data;  // 定义一个数组存放堆，从下标 1 开始
@@ -45,12 +39,21 @@ public:
 
 private:
 
+    /* 将索引为k 的 数组，调整成一个 大顶堆的操作。
+     * */
     void shiftUp(int k) {
+        /*
+         * parent 索引：   k/2
+         * current 索引 ：  k
+         * 循环条件k 值 大于1 即可 且   当前 的索引位置元素 小于 父亲结点的元素
+         * ，就交换两个值，
+         * 同时 更新 k  的值 变成 父亲的索引
+         *
+         * */
 
         while (k >= 2 && data[k / 2] < data[k]) {
 
             swap(data[k], data[k / 2]);
-
             k = k / 2;
         }
 
@@ -153,13 +156,14 @@ private:
 public:
 
     // 插入一个元素
-    void insert(Item item) {
+    void push(Item item) {
 
         // 防止插入太多的元素 ，越界了。
         assert(count + 1 <= capacity);
         // 从小标 为1 的位置 ，开始放入元素
         data[count + 1] = item;
         shiftUp(count + 1);
+        // 注意在这里维护 count 的值 自增1
         count++;
 
     }
@@ -187,15 +191,16 @@ public:
 };
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     srand(time(NULL));
     MaxHeap<int> maxHeap = MaxHeap<int>(50);
 
     for (int i = 1; i <= 10; i++) {
-        maxHeap.insert(rand() % 100);
+        maxHeap.push(rand() % 100);
     }
 
     maxHeap.printHeap();
 
     return 0;
 }
+
+
