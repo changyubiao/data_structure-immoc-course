@@ -12,29 +12,29 @@ using namespace std;
 
 The max heap size is: 10
 data[0]: 0
-Data in the max heap: 95 70 41 44 51 25 18 0 31 27
-
-           95
-      /          \
-     70          41
-   /    \      /    \
-  44    51    25    18
- / \   / \   / \   / \
-0  31 27
-max item = 95
-The max heap size is: 9
-data[0]: 0
-Data in the max heap: 70 51 41 44 27 25 18 0 31
+Data in the max heap: 70 44 51 31 27 41 25 10 18 22
 
            70
       /          \
-     51          41
+     44          51
    /    \      /    \
-  44    27    25    18
+  31    27    41    25
  / \   / \   / \   / \
-0  31
+10 18 22
+current top = 70
+pop item = 70
+The max heap size is: 9
+data[0]: 0
+Data in the max heap: 51 44 41 31 27 22 25 10 18
 
-Process finished with exit code 0
+           51
+      /          \
+     44          41
+   /    \      /    \
+  31    27    22    25
+ / \   / \   / \   / \
+10 18
+current top = 51
 
 
  *
@@ -44,12 +44,11 @@ class MaxHeap {
 
 
 private:
-//    Item *data;  // 定义一个数组存放堆，从下标 1 开始
+    Item *data;  // 定义一个数组存放堆，从下标 1 开始
     int count;  // 记录当前堆的元素的个数
     int capacity; // 记录堆的最大容量， 这里的堆是不可扩展的堆，初始化后 最大容量就已经确定了。
 
-public:
-    Item *data; // 定义一个数组存放堆，从下标 1 开始
+
 
 public:
     // 构造函数, 构造一个空堆, 可容纳capacity个元素
@@ -95,19 +94,17 @@ private:
         while (2 * k <= count) {
 
             // 初始化 任务左孩子
-            int j = 2 * k;//此轮 循环 是要找到哪个 节点应该和j 的位置互换
+            int j = 2 * k;//此轮 循环 是要找到 data[k]节点应该和 j的位置 互换
 
             if (j + 1 <= count && data[j + 1] > data[j]) {
-                j = j + 1;
+                j = j + 1;  // 寻找较大的儿子结点
             }
 
             if (data[j] <= data[k]) {
                 // 说明 已经 是大顶堆了，不用继续寻找下去了。
                 break;
             }
-
             swap(data[j], data[k]);
-
             // 更新k
             k = j;
 
@@ -253,13 +250,20 @@ public:
 
         Item largestItem = data[1];
 
-
         swap(data[1], data[count]);
         this->count--;
 
         shiftDown(1);
-
         return largestItem;
+
+    }
+
+    Item getTop(){
+        /* 获取当前堆的 堆顶元素（max）, 元素 不从堆中取出*/
+
+        Item  top = data[1];
+
+        return top ;
 
 
     }
@@ -293,32 +297,28 @@ int main11() {
 }
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    srand(time(NULL));
-    MaxHeap<int> maxHeap = MaxHeap<int>(40);
+    MaxHeap<int> maxHeap = MaxHeap<int>(50);
 
-//    for (int i = 1; i <= 10; i++) {
-//        maxHeap.push(rand() % 100);
-//    }
-//
-    int arr [11]= {10,95 ,70, 41, 44, 51, 25, 18, 0, 31, 27};
+    int arr [10]= {10,70, 41, 44,22,  51, 25, 18,  31, 27};
+    for (int e : arr){
+        maxHeap.push(e);
 
-    for (int i =1;i<=10;i++){
-        maxHeap.push(arr[i]);
     }
-
+    cout<<endl;
 
     maxHeap.printHeap();
     assert(maxHeap.isHeap());
 
-
+    cout<< "current top = "<< maxHeap.getTop()<<endl;
     int item = maxHeap.pop();
 
-    cout << "max item = " << item << endl;
+    cout << "pop item = " << item << endl;
 
     maxHeap.printHeap();
-    assert(maxHeap.isHeap());
 
+    cout<< "current top = "<< maxHeap.getTop()<<endl;
+
+    assert(maxHeap.isHeap());
 
     return 0;
 }
