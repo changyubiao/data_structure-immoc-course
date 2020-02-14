@@ -5,5 +5,5 @@
 
 
 ## 第五章 二叉搜索树
-
+1. [二分搜索算法](./05-BST/01-BinarySearch/README.md)
 6. [二叉搜索树的层序遍历](./05-BST/06-Binary-Search-Tree-Level-Traverse/README.md) 
