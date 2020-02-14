@@ -78,6 +78,6 @@ int binarySearch(T arr[], int n, T target){
 }
 
 ```
-完整代码 [main.py](.main.cpp)
+完整代码 [main.py](main.cpp)
 
 
