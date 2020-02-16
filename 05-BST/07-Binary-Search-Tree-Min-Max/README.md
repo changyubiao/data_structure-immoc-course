@@ -35,3 +35,65 @@
 10 levelOrder() 层序遍历二叉搜索树 
 11. maximum()  寻找二分搜索树的最大的键值
 12. minimum()  寻找二分搜索树的最小的键值
+
+
+---
+
+### 05-07 寻找二叉搜索树 最大的key，最小的key
+
+![img07-01](./images/bs-07-1.PNG)
+
+如何找到 最大的结点呢？  
+如果一个二叉搜索树，如下图，那么最大值，最小值必须在图中 的位置 
+![img07-02](./images/bs-07-2.PNG)
+
+最小值 一定在 最左面的位置 
+![img07-04](./images/bs-07-4.PNG)
+
+
+最大值 一定在 最右面的位置 
+![img07-05](./images/bs-07-5.png)
+
+
+
+### 代码实现
+有两种方式 一种是 递归的方式，一种非递归的方式。
+
+
+寻找最小值  
+递归写法 
+```c++
+    /*
+     * 返回 以node 为根结点 二叉搜索树 的最小结点
+     *
+     * 递归写法
+     * */
+    Node *minimum(Node *node) {
+
+        if (node->left == nullptr) {
+            return node;
+        }
+        return minimum(node->left);
+
+    }
+```
+
+非递归写法 
+
+```c++
+    /*
+      * 返回 以node 为根结点 二叉搜索树 的最小结点
+      *
+      * 非递归实现
+      * */
+    Node * minimum2(Node *node){
+        while (node->left) {
+            node  = node->left;
+        }
+        return node;
+    }
+
+```
+
+寻找最大值 类似  
+完整代码 见 [main.py->maximum ](main.cpp)

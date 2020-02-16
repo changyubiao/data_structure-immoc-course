@@ -129,7 +129,6 @@ public:
 
     /* 层序遍历 二叉搜索树 */
     void levelOrder() {
-        //todo  不加空值检查 会不会有问题 ？ 
         queue<Node *> q;
 
         if (root != nullptr) {
@@ -339,6 +338,20 @@ private:
 
     }
 
+
+    /*
+      * 返回 以node 为根结点 二叉搜索树 的最小结点
+      *
+      * 非递归实现
+      * */
+    Node *minimum2(Node *node) {
+        while (node->left) {
+            node = node->left;
+        }
+        return node;
+    }
+
+
     /*
   * 返回 以node 为根结点 二叉搜索树 的最大结点
   *
@@ -353,11 +366,24 @@ private:
 
     }
 
+
+    /*
+    * 返回 以node 为根结点 二叉搜索树 的最大结点
+    *
+    * 非递归写法
+    */
+    Node *maximum2(Node *node) {
+
+        while (node->right) {
+            node = node->right;
+        }
+        return node;
+    }
 };
 
 
 // 测试二分搜索树的 Max  Min
-int main01() {
+int main() {
     std::cout << "Hello, World!  Max, Min " << std::endl;
 
     BST<int, int> bst = BST<int, int>();
@@ -392,11 +418,7 @@ int main01() {
     cout << "maximum =" << bst.minimum() << endl;
 
 
-
-
-    // 测试二分搜索树 最小值情况
-//    cout<< "测试二分搜索树 最小值情况 "<<endl;
-
+    cout << endl;
     cout << "Test BST  Min Value: " << endl;
 
     int arr2[7] = {72, 54, 37, 59, 23, 19, 15};
@@ -426,13 +448,25 @@ int main01() {
 }
 
 
-int main() {
+int main01() {
 
     BST<int, int> bst = BST<int, int>();
 
 
-    bst.levelOrder();
+    cout << "Test BST  Min Value: " << endl;
+
+    int arr2[7] = {72, 54, 37, 59, 23, 19, 15};
+
+    for (int key : arr2) {
+        int value = key;
+        // 为了后续测试方便,这里value值取和key值一样
+        cout << key << ", ";
+        bst.insert(key, value);
+    }
+    cout << endl;
 
 
+    cout << "size: " << bst.size() << endl;
+    cout << "minimum =" << bst.minimum() << endl;
     return 0;
 }
