@@ -383,9 +383,9 @@ private:
 
 
     /*
-      // 删除掉以node为根的二分搜索树中的最大节点
-      // 返回删除节点后新的二分搜索树的根
-      采用递归的方法
+       删除掉以node为根的二分搜索树中的最大节点
+       返回删除节点后新的二分搜索树的根
+       采用递归的方法
    * */
     Node *removeMax(Node *node) {
 
@@ -397,7 +397,6 @@ private:
         }
         node->right = removeMax(node->right);
         return node;
-
     }
 };
 
