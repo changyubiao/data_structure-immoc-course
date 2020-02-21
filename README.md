@@ -9,3 +9,4 @@
 6. [二叉搜索树的层序遍历](./05-BST/06-Binary-Search-Tree-Level-Traverse/README.md) 
 7. [二分搜索树寻找最大最小结点](./05-BST/07-Binary-Search-Tree-Min-Max/README.md)
 8. [二分搜索树删除最大最小结点](./05-BST/08-Binary-Search-Tree-Remove-Min-Max/README.md)
+9. [二分搜索树删除任意结点](./05-BST/09-Binary-Search-Tree-Remove/README.md)
